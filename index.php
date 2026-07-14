@@ -31,6 +31,10 @@ if (!file_exists(PATH_ROOT . '/app/autoload.php')) {
 }
 require_once PATH_ROOT . '/app/autoload.php';
 
+if (file_exists(PATH_ROOT . '/vendor/autoload.php')) {
+    require_once PATH_ROOT . '/vendor/autoload.php';
+}
+
 $current = \Blogy\Helper\RouteHelper::getPage();
 
 if ($current['page'] == '404') {

@@ -10,7 +10,7 @@ class Config {
 	public $password = '';
 	public $db = 'blogy';
 
-    public $limit = 5;
+    public $limit = 6;
 
     public $password_migration = 'secret';
     public $password_seeder = 'secret';

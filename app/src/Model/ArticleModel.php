@@ -31,7 +31,7 @@ class ArticleModel extends ItemModel
                 return [];
             }
 
-            $sqlCategories = "SELECT c.`id`, c.`title` 
+            $sqlCategories = "SELECT c.`slug`, c.`title` 
                       FROM `categories` c
                       JOIN `article_category` ac ON c.`id` = ac.`category_id`
                       WHERE ac.`article_id` = :article_id";

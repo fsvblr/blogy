@@ -4,6 +4,7 @@ namespace Blogy\Controller;
 
 \defined('_PREVENT') or die;
 
+use Blogy\Helper\ViewHelper;
 use Blogy\Model\ArticleModel;
 
 class ArticleController extends BaseController
@@ -16,6 +17,9 @@ class ArticleController extends BaseController
 
         $model->addHit();
 
-        echo '<pre>'.print_r($article, true).'</pre>';
+        $smarty = ViewHelper::getSmarty();
+
+        $smarty->assign('article', $article);
+        $smarty->display('article.tpl');
     }
 }

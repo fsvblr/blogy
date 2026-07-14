@@ -17,7 +17,7 @@ class ListModel
     public function populateState(): void
     {
         $config = new \Config();
-        $this->state->limit = !empty((int) $config->limit) ? (int) $config->limit : 5;
+        $this->state->limit = !empty((int) $config->limit) ? (int) $config->limit : 6;
 
         $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
         if ($page < 1) {

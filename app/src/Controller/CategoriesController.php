@@ -4,6 +4,7 @@ namespace Blogy\Controller;
 
 \defined('_PREVENT') or die;
 
+use Blogy\Helper\ViewHelper;
 use Blogy\Model\CategoriesModel;
 
 class CategoriesController extends BaseController
@@ -13,6 +14,9 @@ class CategoriesController extends BaseController
         $model = new CategoriesModel();
         $categories = $model->getItems();
 
-        echo '<pre>'.print_r($categories, true).'</pre>';
+        $smarty = ViewHelper::getSmarty();
+
+        $smarty->assign('categories', $categories);
+        $smarty->display('categories.tpl');
     }
 }

@@ -4,6 +4,7 @@ namespace Blogy\Controller;
 
 \defined('_PREVENT') or die;
 
+use Blogy\Helper\ViewHelper;
 use Blogy\Model\CategoryModel;
 
 class CategoryController extends BaseController
@@ -14,6 +15,9 @@ class CategoryController extends BaseController
         $model->setState('slug', $this->slug);
         $category = $model->getItems();
 
-        echo '<pre>'.print_r($category, true).'</pre>';
+        $smarty = ViewHelper::getSmarty();
+
+        $smarty->assign('category', $category);
+        $smarty->display('category.tpl');
     }
 }
