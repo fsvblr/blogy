@@ -14,19 +14,24 @@ class ListModel
         $this->populateState();
     }
 
-    public function populateState()
+    public function populateState(): void
     {
         $config = new \Config();
-        $this->limit = $config->limit;
+        $this->state->limit = !empty((int) $config->limit) ? (int) $config->limit : 5;
 
-        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
         if ($page < 1) {
             $page = 1;
         }
-        $this->state->offset = ($page - 1) * $this->limit;
+        $this->state->offset = ($page - 1) * $this->state->limit;
     }
 
-    public function getItems()
+    public function setState($prop, $value): void
+    {
+        $this->state->$prop = $value;
+    }
+
+    public function getItems(): array
     {
         return [];
     }

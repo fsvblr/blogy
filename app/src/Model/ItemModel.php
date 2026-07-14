@@ -14,12 +14,17 @@ class ItemModel
         $this->populateState();
     }
 
-    public function populateState()
+    public function populateState(): void
     {
         // ...
     }
 
-    public function getItem()
+    public function setState($prop, $value): void
+    {
+        $this->state->$prop = $value;
+    }
+
+    public function getItem(): array
     {
         return ['title' => 'Article'];
     }

@@ -8,7 +8,7 @@ use Blogy\Model\CategoriesModel;
 
 class CategoriesController extends BaseController
 {
-    public function display()
+    public function display(): void
     {
         $model = new CategoriesModel();
         $categories = $model->getItems();
