@@ -1,7 +1,24 @@
+@use "sass:color";
+
 $bg-header: #2c4a57;
 $text-dark: #333;
 $text-muted: #777;
 $border-color: #e2e8f0;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main, .main-content {
+  flex: 1 0 auto;
+  padding-bottom: 3.5rem;
+}
 
 .container {
   max-width: 1200px;
@@ -21,8 +38,12 @@ $border-color: #e2e8f0;
   }
 }
 .main-footer {
+  flex-shrink: 0;
   text-align: center;
-  margin-top: 60px;
+  margin-top: auto;
+  background-color: $bg-header;
+  color: #ffffff;
+  padding: 20px 0;
   font-size: 0.9rem;
 }
 
@@ -303,3 +324,59 @@ $border-color: #e2e8f0;
   }
 }
 
+// Error 404 page
+.error-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+
+  .error-content {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .error-code {
+    font-size: 8rem;
+    font-weight: 900;
+    color: $bg-header;
+    line-height: 1;
+    margin: 0 0 10px 0;
+    letter-spacing: -2px;
+  }
+
+  .error-title {
+    font-size: 2rem;
+    color: $text-dark;
+    margin-bottom: 15px;
+  }
+
+  .error-text {
+    font-size: 1.1rem;
+    color: $text-muted;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .back-home-btn {
+    display: inline-block;
+    background-color: $bg-header;
+    color: #ffffff;
+    padding: 12px 28px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background-color 0.2s, transform 0.1s;
+    border: 1px solid transparent;
+
+    &:hover {
+      background-color: color.scale($bg-header, $lightness: 15%);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}

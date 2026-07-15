@@ -14,11 +14,11 @@ if (!file_exists(PATH_ROOT . '/app/configuration.php')) {
 }
 require_once PATH_ROOT . '/app/configuration.php';
 
-if (!file_exists(PATH_ROOT . '/app/cashe/autoload_psr4.php')) {
+if (!file_exists(PATH_ROOT . '/app/cache/autoload_psr4.php')) {
     echo 'Namespaces file not found. Exiting...';
     exit;
 }
-$map = require_once PATH_ROOT . '/app/cashe/autoload_psr4.php';
+$map = require_once PATH_ROOT . '/app/cache/autoload_psr4.php';
 
 if (!file_exists(PATH_ROOT . '/app/autoload.php')) {
     echo 'Autoload file not found. Exiting...';

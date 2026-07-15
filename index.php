@@ -1,6 +1,6 @@
 <?php
 
-define('MINIMUM_PHP', '8.1.0');
+\define('MINIMUM_PHP', '8.1.0');
 
 if (version_compare(PHP_VERSION, MINIMUM_PHP, '<')) {
     die('Sorry, your PHP version is not supported. The minimum PHP version is 8.1.');
@@ -19,11 +19,11 @@ if (!file_exists(PATH_ROOT . '/app/configuration.php')) {
 }
 require_once PATH_ROOT . '/app/configuration.php';
 
-if (!file_exists(PATH_ROOT . '/app/cashe/autoload_psr4.php')) {
+if (!file_exists(PATH_ROOT . '/app/cache/autoload_psr4.php')) {
     echo 'Namespaces file not found. Exiting...';
     exit;
 }
-$map = require_once PATH_ROOT . '/app/cashe/autoload_psr4.php';
+$map = require_once PATH_ROOT . '/app/cache/autoload_psr4.php';
 
 if (!file_exists(PATH_ROOT . '/app/autoload.php')) {
     echo 'Autoload file not found. Exiting...';
@@ -31,17 +31,13 @@ if (!file_exists(PATH_ROOT . '/app/autoload.php')) {
 }
 require_once PATH_ROOT . '/app/autoload.php';
 
-if (file_exists(PATH_ROOT . '/vendor/autoload.php')) {
-    require_once PATH_ROOT . '/vendor/autoload.php';
-}
-
-$current = \Blogy\Helper\RouteHelper::getPage();
-
-if ($current['page'] == '404') {
-    http_response_code(404);
-    echo '404 - Page not found.';
+if (!file_exists(PATH_ROOT . '/vendor/autoload.php')) {
+    echo 'Vendor autoload file not found. Exiting...';
     exit;
 }
+require_once PATH_ROOT . '/vendor/autoload.php';
+
+$current = \Blogy\Helper\RouteHelper::getPage();
 
 $ControllerClassName = '\\Blogy\\Controller\\' . $current['page'] . 'Controller';
 $task = $current['task'] ?: 'display';
@@ -56,5 +52,6 @@ try {
         exit;
     }
 } catch (\Exception $e) {
-    //echo $e->getMessage();
+    error_log("Error: " . $e->getMessage());
+    echo 'Application error.';
 }

@@ -26,8 +26,8 @@ abstract class RouteHelper
             $slug = $segments[1];
             $page = 'Article';
         } else {
-            $slug = null;
-            $page = '404';
+            $slug = '';
+            $page = 'Page404';
         }
 
         return [

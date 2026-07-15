@@ -45,7 +45,8 @@ class ArticleModel extends ItemModel
             $article['related'] = $this->getRelatedArticles($pdo, $article['id']);
 
         } catch (\PDOException $e) {
-            exit($e->getMessage());
+            error_log("Error retrieving an article: " . $e->getMessage());
+            $article = [];
         }
 
         return $article;
